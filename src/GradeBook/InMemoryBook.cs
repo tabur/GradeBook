@@ -5,7 +5,8 @@ namespace GradeBook
 {
   public class InMemoryBook : Book
   {
-    private List<double> _grades;
+    private readonly List<double> _grades;
+
     public Statistics stat;
 
     public override event GradeAddedDelegate GradeAdded;
@@ -29,6 +30,8 @@ namespace GradeBook
       if(grade >= 0 && grade <= 100)
       {
         _grades.Add(grade);
+
+        //delegate invocation
         if(GradeAdded != null) 
         {
           GradeAdded(this, new EventArgs());
@@ -39,12 +42,5 @@ namespace GradeBook
         throw new ArgumentException($"Invalid {nameof(grade)}");
       }
     }
-
-    
-
-    
-    
-   
   }
-
 }

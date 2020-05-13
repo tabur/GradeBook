@@ -26,15 +26,25 @@ namespace GradeBook
       {
         File.CreateText(_path);
       }
-
-      using (StreamWriter sw = File.AppendText(_path))
-      {
-        sw.WriteLine(grade);
-        if(GradeAdded != null) 
+        //check if the value is valid, then add it to the file and invoke the event delegate
+        using (StreamWriter sw = File.AppendText(_path))
         {
-          GradeAdded(this, new EventArgs());
+            if (grade >= 0 && grade <= 100)
+            {
+                sw.WriteLine(grade);
+
+                //delegate invocation
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
+            }
+            else
+            {
+                throw new ArgumentException($"Invalid {nameof(grade)}");
+            }
+          
         }
-      }
     }
 
     public override Statistics GetStatistics()

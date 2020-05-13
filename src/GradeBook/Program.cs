@@ -10,7 +10,7 @@ namespace GradeBook
       //create a new book object
       IBook book = new DiskBook("test book, please ignore");
 
-      //subscribe to grade event
+      //subscribe handler to event
       book.GradeAdded += OnGradeAdded;
 
       EnterGrades(book);
@@ -24,7 +24,6 @@ namespace GradeBook
     //get and print the statistics of the given book
     public static void ShowStats(IBook book)
     {
-      
       Statistics stat = book.GetStatistics();
       
       Console.WriteLine($"The average is {stat.Average:N1}, minimum is {stat.Min} and maximum is {stat.Max}");
@@ -49,6 +48,7 @@ namespace GradeBook
           //try to enter a grade or catch exceptions from incorrectly formatted input 
           try
           {
+            
             var grade = double.Parse(input);
             book.AddGrade(grade);
           }
@@ -64,7 +64,7 @@ namespace GradeBook
       }
     }
 
-    //event delegate
+    //event handler
     static void OnGradeAdded(object sender, EventArgs e) 
     {
       Console.WriteLine("*");
