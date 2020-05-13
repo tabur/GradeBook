@@ -27,22 +27,22 @@ namespace GradeBook
         File.CreateText(_path);
       }
         //check if the value is valid, then add it to the file and invoke the event delegate
-        using (StreamWriter sw = File.AppendText(_path))
+      using (StreamWriter sw = File.AppendText(_path))
+      {
+        if (grade >= 0 && grade <= 100)
         {
-            if (grade >= 0 && grade <= 100)
-            {
-                sw.WriteLine(grade);
+          sw.WriteLine(grade);
 
-                //delegate invocation
-                if (GradeAdded != null)
-                {
-                    GradeAdded(this, new EventArgs());
-                }
-            }
-            else
-            {
-                throw new ArgumentException($"Invalid {nameof(grade)}");
-            }
+          //delegate invocation
+          if (GradeAdded != null)
+          { 
+            GradeAdded(this, new EventArgs());
+          }
+        }
+        else
+        {
+            throw new ArgumentException($"Invalid {nameof(grade)}");
+        }
           
         }
     }
