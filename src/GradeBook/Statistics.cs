@@ -50,12 +50,11 @@ namespace GradeBook
     public double CalculateAverage()
     {
       double result = 0;
-      double avg = 0;
-
+      
       foreach (double num in _grades)
         result += num;
       
-      return avg = result / _grades.Count;
+      return result / _grades.Count;
     }
 
     public double FindMax() 

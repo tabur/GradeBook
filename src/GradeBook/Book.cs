@@ -1,9 +1,7 @@
-using System;
 
 namespace GradeBook
 {
-  public delegate void GradeAddedDelegate(object sender, EventArgs args);
-
+  
   public interface IBook
   {
     void AddGrade(double book);
@@ -12,7 +10,7 @@ namespace GradeBook
     event GradeAddedDelegate GradeAdded;
   }
 
-  //a core abstract class which other book objects 
+  //a parent abstract class
   public abstract class Book : NamedObject, IBook
   {
     public Book(string name) : base(name)

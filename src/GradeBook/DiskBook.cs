@@ -7,7 +7,8 @@ namespace GradeBook
 {
   public class DiskBook : Book
   {
-    private string _path;
+    private readonly string _path;
+
     public DiskBook(string name) : base(name)
     {
       _path = Path.GetInvalidFileNameChars()
